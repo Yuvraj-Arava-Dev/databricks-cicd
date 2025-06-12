@@ -13,7 +13,7 @@ if not DATABRICKS_HOST or not DATABRICKS_TOKEN:
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))                  # /pipeline
 PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))          # /
 SELECTIVE_FILES_PATH = os.path.join(PROJECT_ROOT, "pipelines", "selective_files.txt")
-DATABRICKS_WORKSPACE_BASE = "/Workspace/Shared"
+DATABRICKS_WORKSPACE_BASE_PATH = os.getenv("DATABRICKS_WORKSPACE_BASE_PATH")   #"/Workspace/Shared"
 
 def get_file_list(file_path):
     with open(file_path, "r") as f:
@@ -51,7 +51,7 @@ def main():
     for rel_path in files:
         rel_path = rel_path.replace("\\", "/").lstrip("/")
         local_file = os.path.join(PROJECT_ROOT, rel_path)
-        workspace_path = os.path.join(DATABRICKS_WORKSPACE_BASE, rel_path).replace("\\", "/")
+        workspace_path = os.path.join(DATABRICKS_WORKSPACE_BASE_PATH, rel_path).replace("\\", "/")
         create_workspace_folder(os.path.dirname(workspace_path))
         upload_file_to_workspace(local_file, workspace_path)
 
