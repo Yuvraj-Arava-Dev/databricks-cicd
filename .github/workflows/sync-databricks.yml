@@ -33,4 +33,4 @@ jobs:
       env:
         DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
         DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-      run: python pipeline/sync_to_databricks.py
+      run: python pipelines/sync_to_databricks.py
