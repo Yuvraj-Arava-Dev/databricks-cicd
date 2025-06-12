@@ -10,10 +10,10 @@ if not DATABRICKS_HOST or not DATABRICKS_TOKEN:
     raise EnvironmentError("Databricks credentials not found in environment variables.")
 
 # Dynamically determine project root and file locations
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))                  # /pipeline
-PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))          # /
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))                 
+PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "..")) 
 SELECTIVE_FILES_PATH = os.path.join(PROJECT_ROOT, "pipelines", "selective_files.txt")
-DATABRICKS_WORKSPACE_BASE_PATH = os.getenv("DATABRICKS_WORKSPACE_BASE_PATH")   #"/Workspace/Shared"
+DATABRICKS_WORKSPACE_BASE_PATH = os.getenv("DATABRICKS_WORKSPACE_BASE_PATH") 
 
 def get_file_list(file_path):
     with open(file_path, "r") as f:
