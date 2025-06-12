@@ -43,8 +43,10 @@ def upload_file_to_workspace(local_path, workspace_path):
         "overwrite": True
     }
     response = requests.post(url, headers=headers, json=data)
-    status = "✅" if response.status_code == 200 else "❌"
-    print(f"{status} Uploaded to {workspace_path}: {response.status_code} - {response.text}")
+    if response.status_code == 200:
+        print(f"✅ Uploaded to {workspace_path}")
+    else:
+        print(f"❌ Failed to upload to {workspace_path}")
 
 def main():
     files = get_file_list(SELECTIVE_FILES_PATH)
